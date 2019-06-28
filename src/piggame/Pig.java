@@ -3,39 +3,59 @@ package piggame;
 import java.util.Scanner;
 
 public class Pig {
+    public static void main(String[] args) {
+        while (!Pig.){
 
-    private static String Player1 = "Human";
-    private static String Player2 = "Computer";
-
-    private static int WinThreshold = 100;
-
-    private int Player1Points;
-    private int Player2Points;
-
-    public static void TheRolls(){
-
+        }
     }
+    Die dice1 = new Die();
+    Die dice2 = new Die();
+    int PlayerTurn;
 
-    //private String GameStatus(){
-    //}
+    String Player1 = "Human";
+    String Player2 = "Computer";
 
+    int WinThreshold = 100;
 
-    private void Roll(int RoundPoints){
+    int Player1Points;
+    int Player2Points;
+
+//Refer to player mechanics methodology on stack exchange codereview
+
+    public int Rolls(){
+        int RollPoints;
+        dice1.roll();
+        dice2.roll();
+        RollPoints = dice1.getFaceValue() + dice2.getFaceValue();
+        return RollPoints;
+        }
+
+    public int Roll(int RoundPoints){
         System.out.println("Do you want to roll again (Y/N):");
         Scanner keystroke = new Scanner(System.in);
         String RollOrNot = keystroke.nextLine();
+
+
     }
 
-    private boolean Gameover(){
+    public boolean Gameover(int WinThreshold, int Player1Points, int Player2Points){
+        boolean Player1Victory = true;
+        boolean Player2Victory = true;
 
-        boolean Player1Victory = Player1Points >= WinThreshold;
-        boolean Player2Victory = Player2Points >= WinThreshold;
-        return Player1Victory || Player2Victory;
+        if (Player1Points >= WinThreshold){
+            return Player1Victory;
+        }
+
+        if (Player2Points >= WinThreshold){
+            return Player2Victory;
+        }
+
+        Pig(){
+            Player1Points = 0;
+            Player2Points = 0;
+            PlayerTurn = 1;
+        }
     }
 
-    public Pig(){
-        Player1Points = 0;
-        Player2Points = 0;
-        PlayerTurn = 1;
-    }
+
 }
