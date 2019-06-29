@@ -9,10 +9,7 @@ public class Pig {
     Die dice1 = new Die();
     Die dice2 = new Die();
 
-    public static int Player1Points = 0;
-    public static int Player2Points = 0;
-    public static int PointCounter;
-    int WinThreshold = 100;
+    final int WinThreshold = 100;
 
     public String Player1 = "Human";
     public String Player2 = "Computer";
@@ -21,32 +18,26 @@ public class Pig {
 
         System.out.println("This is the Dice Game");
         System.out.println("Player 1 is up first...");
-        p1GameLogic();
 
     }
 
-    int PlayerTurn;
-
-
-
     public void p1GameLogic(){
-        PointCounter = 0;
+        int Player1Points = 0;
+        int PointCounter = 0;
         System.out.println("Do you want to roll: (Y/N)");
         String answer = scan.nextLine();
         answer = answer.toUpperCase();
 
         if (answer.equals("N")){
             System.out.println("Player 2's turn");
-            p2GameLogic();
+            //p2GameLogic();
         }
 
-        int Rolls = Roll();
-        dice1.roll();
-        dice2.roll();
-        System.out.println("Rolled Numbers: " + Rolls);
-        while (Player1Points + PointCounter < 100){
-            while (dice1.getFaceValue() != 1 || dice2.getFaceValue() != 2){
-                PointCounter = PointCounter + Rolls;
+        Roll();
+        System.out.println("Rolled Numbers: " + dice1.getFaceValue() + " " + dice2.getFaceValue());
+        while (Player1Points < WinThreshold){
+            while (dice1.getFaceValue() != 1 || dice2.getFaceValue() != 1){
+                Player1Points = Player1Points + ;
                 System.out.println("Do you want to roll: (Y/N)");
                 answer = scan.nextLine();
                 answer = answer.toUpperCase();
@@ -54,9 +45,13 @@ public class Pig {
             if (answer.equals("N")){
                 Player1Points = Player1Points + PointCounter;
                 System.out.println("Player 1 ended their turn");
-                //System.out.println("Scores for the game");
+                //System.out.println("Scores fo
+                // r the game");
                 System.out.println("Player 2 roll");
-                p2GameLogic();
+                //p2GameLogic();
+            }
+            if (answer.equals("Y")){
+                Roll();
             }
 
         }
@@ -66,15 +61,14 @@ public class Pig {
         System.out.println("Player 1 rolled a One.");
         System.out.println("Scores for the game");
         System.out.println("Player 2 roll");
-        p2GameLogic();
+        //p2GameLogic();
 
 
     }
 
-    public void p2GameLogic(){
-        dice2.roll();
-        dice1.roll();
-        PointCounter = 0;
+    /*public void p2GameLogic(){
+        Roll();
+        int PointCounter = 0;
         System.out.println("Do you want to roll: (Y/N)");
         String answer = scan.nextLine();
         answer = answer.toUpperCase();
@@ -83,7 +77,7 @@ public class Pig {
             System.out.println("Player 1 turn to roll");
             p1GameLogic();
         }
-        int Rolls = Roll();
+
         System.out.println("You rolled a " + Roll());
         while (Player2Points < 100){
             while (dice2.getFaceValue() != 1 || dice1.getFaceValue() != 1){
@@ -103,26 +97,33 @@ public class Pig {
             if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
                 Player2Points = 0;
             }
+            System.out.println("Player score is...");
+            p1GameLogic();
         }
-    }
+        System.out.println("Player 2's score reached 100");
+    }*/
 
 //Refer to player mechanics methodology on stack exchange codereview
 
     public int Roll(){
-        int RollPoints;
+        int sum;
         dice1.roll();
         dice2.roll();
-        RollPoints = dice1.getFaceValue() + dice2.getFaceValue();
-        return RollPoints;
+        sum = dice1.getFaceValue() + dice2.getFaceValue();
+        return sum;
         }
 
-    public int Roll(int RoundPoints){
-        System.out.println("Do you want to roll again (Y/N):");
-        Scanner keystroke = new Scanner(System.in);
-        String RollOrNot = keystroke.nextLine();
-
-
+    public void GameConditional(){
+        if (answer.equals("N")){
+            Player1Points = Player1Points + PointCounter;
+            System.out.println("Player 1 ended their turn");
+            //System.out.println("Scores for the game");
+            System.out.println("Player 2 roll");
+            //p2GameLogic();
+        }
+        if (answer.equals("Y")){
+            Roll();
+        }
     }
-
 
 }
