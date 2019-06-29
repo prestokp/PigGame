@@ -72,6 +72,8 @@ public class Pig {
     }
 
     public void p2GameLogic(){
+        dice2.roll();
+        dice1.roll();
         PointCounter = 0;
         System.out.println("Do you want to roll: (Y/N)");
         String answer = scan.nextLine();
@@ -82,6 +84,26 @@ public class Pig {
             p1GameLogic();
         }
         int Rolls = Roll();
+        System.out.println("You rolled a " + Roll());
+        while (Player2Points < 100){
+            while (dice2.getFaceValue() != 1 || dice1.getFaceValue() != 1){
+                Player2Points = Player2Points + PointCounter;
+                System.out.println("Do you want to roll: (Y/N)");
+                answer = answer.toUpperCase();
+
+            }
+            if (Player2Points > 20){
+                System.out.println("Player 2 Turn ended");
+                System.out.println("Here is game score");
+                p1GameLogic();
+            }
+            if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
+                PointCounter = 0;
+            }
+            if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
+                Player2Points = 0;
+            }
+        }
     }
 
 //Refer to player mechanics methodology on stack exchange codereview
