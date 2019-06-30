@@ -3,127 +3,122 @@ package piggame;
 import java.util.Scanner;
 
 public class Pig {
-
-    public static Scanner scan = new Scanner(System.in);
-
-    Die dice1 = new Die();
-    Die dice2 = new Die();
-
-    final int WinThreshold = 100;
-
-    public String Player1 = "Human";
-    public String Player2 = "Computer";
-
     public static void main(String[] args) {
 
-        System.out.println("This is the Dice Game");
-        System.out.println("Player 1 is up first...");
+        Die dice1 = new Die();
+        Die dice2 = new Die();
 
-    }
+        final int VictoryNumber = 100;
 
-    public void p1GameLogic(){
-        int Player1Points = 0;
-        int PointCounter = 0;
-        System.out.println("Do you want to roll: (Y/N)");
-        String answer = scan.nextLine();
-        answer = answer.toUpperCase();
+        int humanScore; //This variable is to keep the total human score
+        int computerScore = 0; //This variable is to keep the total computer score
+        int roundScore; //This variable is to keep the score in individual rounds
 
-        if (answer.equals("N")){
-            System.out.println("Player 2's turn");
-            //p2GameLogic();
-        }
-
-        Roll();
-        System.out.println("Rolled Numbers: " + dice1.getFaceValue() + " " + dice2.getFaceValue());
-        while (Player1Points < WinThreshold){
-            while (dice1.getFaceValue() != 1 || dice2.getFaceValue() != 1){
-                Player1Points = Player1Points + ;
-                System.out.println("Do you want to roll: (Y/N)");
-                answer = scan.nextLine();
-                answer = answer.toUpperCase();
-            }
-            if (answer.equals("N")){
-                Player1Points = Player1Points + PointCounter;
-                System.out.println("Player 1 ended their turn");
-                //System.out.println("Scores fo
-                // r the game");
-                System.out.println("Player 2 roll");
-                //p2GameLogic();
-            }
-            if (answer.equals("Y")){
-                Roll();
-            }
+        public String askRoll(){
 
         }
-        if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
-            PointCounter = 0;
+        while (humanScore < VictoryNumber || computerScore < VictoryNumber){
+
+            boolean ControlFlow = true;
+
+            if (ControlFlow = true){
+
+                while(humanRoll){
+                    humanScore = 0;
+                    dice1.roll();
+                    dice2.roll();
+
+                    //The condition in which both values of the die can be added
+                    if (dice1.getFaceValue() != 1 && dice2.getFaceValue() != 1){
+                        int sum;
+                        sum = dice1.getFaceValue() + dice2.getFaceValue();
+                        humanScore = humanScore + sum;
+                    }
+
+                    //The condition in which one value of the die is 1, no points
+                    //added for this round
+                    if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
+                        int noPoints = 0;
+                        humanScore = humanScore + noPoints;
+                        ControlFlow = false;
+                    }
+
+                    //The condition in which both values of the die are 1
+                    //Eliminates all accumulated points by assigning the points to 0
+                    if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
+                        int snakeEyes = 0;
+                        humanScore = snakeEyes;
+                        ControlFlow = false; //probably going to replace with a function that can control the methods
+                    }
+
+                    if (ControlFlow = false){
+                        computerScore = 0;
+                        int computerRoundScore; //This keeps track the score for the computer per round
+                                                //If the
+                    }
+
+                } //While loop delimiter
+
+            }
         }
-        System.out.println("Player 1 rolled a One.");
-        System.out.println("Scores for the game");
-        System.out.println("Player 2 roll");
-        //p2GameLogic();
 
 
-    }
 
-    /*public void p2GameLogic(){
-        Roll();
-        int PointCounter = 0;
-        System.out.println("Do you want to roll: (Y/N)");
-        String answer = scan.nextLine();
-        answer = answer.toUpperCase();
-        if (answer.equals("N")){
-            System.out.println("Player 2 skipped their turn");
-            System.out.println("Player 1 turn to roll");
-            p1GameLogic();
-        }
 
-        System.out.println("You rolled a " + Roll());
-        while (Player2Points < 100){
-            while (dice2.getFaceValue() != 1 || dice1.getFaceValue() != 1){
-                Player2Points = Player2Points + PointCounter;
-                System.out.println("Do you want to roll: (Y/N)");
-                answer = answer.toUpperCase();
-
-            }
-            if (Player2Points > 20){
-                System.out.println("Player 2 Turn ended");
-                System.out.println("Here is game score");
-                p1GameLogic();
-            }
-            if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
-                PointCounter = 0;
-            }
-            if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
-                Player2Points = 0;
-            }
-            System.out.println("Player score is...");
-            p1GameLogic();
-        }
-        System.out.println("Player 2's score reached 100");
-    }*/
-
-//Refer to player mechanics methodology on stack exchange codereview
-
-    public int Roll(){
-        int sum;
+        }//Delimiter for the main function
+    /*
+    public int rollDice(){
         dice1.roll();
         dice2.roll();
-        sum = dice1.getFaceValue() + dice2.getFaceValue();
-        return sum;
-        }
+        dice1.getFaceValue();
+        dice2.getFaceValue();
 
-    public void GameConditional(){
-        if (answer.equals("N")){
-            Player1Points = Player1Points + PointCounter;
-            System.out.println("Player 1 ended their turn");
-            //System.out.println("Scores for the game");
-            System.out.println("Player 2 roll");
-            //p2GameLogic();
-        }
-        if (answer.equals("Y")){
-            Roll();
-        }
     }
 
-}
+    public void playerTurn(){
+
+        do{
+            rollDice();
+            checkForOnes();
+            modifyScores();
+            promptContinue();
+        } while()
+    }
+
+
+
+
+
+    public int checkForOnes(){
+
+        if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
+            int roundZeroing;
+            roundZeroing = 0;
+            return roundZeroing;
+        }
+        if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
+            int pointZeroing;
+            pointZeroing = 0;
+            return pointZeroing;
+        }
+        if (dice1.getFaceValue() != 1 && dice2.getFaceValue() != 1){
+            int sum;
+            sum = dice1.getFaceValue() + dice2.getFaceValue();
+            return sum;
+        }
+        return
+        }
+
+    public int modifyScore(int roundZeroing, int pointZeroing, int sum){
+        int totalPoints;
+        if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1){
+            totalPoints = totalPoints + roundZeroing;
+        }
+        if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
+            int totalPoints = pointZeroing;
+
+        }
+
+    }
+}*/
+
