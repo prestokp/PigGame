@@ -26,13 +26,14 @@ public class Pig {
         //This while loop keeps the whole game running until game winning conditions are met.
         while (humanScore < VictoryNumber || computerScore < VictoryNumber) {
 
-            System.out.println("PIG");
-            System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
-            System.out.println("Do you want to roll: (Y/N)");
+            //System.out.println("PIG");
+
 
             if (answer.equalsIgnoreCase(affirmation)) {
 
                 do {
+                    System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
+                    System.out.println("Do you want to roll: (Y/N)");
                     System.out.println("User's turn.");
                     //Rolls the dice
                     dice1.roll();
@@ -134,16 +135,16 @@ public class Pig {
                 //Conditional code blocks that check user/computer scores against
                 //each other and the Victory Number in order to determine if the
                 //game was won and who won the game
-                /*if (humanScore > computerScore){
+                if (humanScore > VictoryNumber){
                     System.out.println("The User wins!");
                     break;
-                } else if(humanScore == computerScore){
+                }/* else if(humanScore == computerScore){
                     System.out.println("No one wins...");
                     break;
-                } else if (humanScore < computerScore){
+                }*/ else if (VictoryNumber < computerScore){
                     System.out.println("The Computer wins!");
                     break;
-                }*/
+                }
 
         } //Game While Loop Delimiter
 
