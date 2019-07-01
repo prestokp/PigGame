@@ -21,13 +21,14 @@ public class Pig {
         Scanner scan = new Scanner(System.in);  //Scanner object to take in user input
         String answer = scan.nextLine();        //Stores user input in reference variable
 
-        System.out.println("PIG");
-        System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
-        System.out.println("Do you want to roll: (Y/N)");
+
 
         //This while loop keeps the whole game running until game winning conditions are met.
         while (humanScore < VictoryNumber || computerScore < VictoryNumber) {
 
+            System.out.println("PIG");
+            System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
+            System.out.println("Do you want to roll: (Y/N)");
 
             if (answer.equalsIgnoreCase(affirmation)) {
 
@@ -61,13 +62,13 @@ public class Pig {
 
                         humanRoundScore = dice1.getFaceValue() + dice2.getFaceValue();
                         humanScore = humanScore + humanRoundScore;
-                        System.out.println("Human score is now " + humanScore + ".");
+                        System.out.println("User score is now " + humanScore + ".");
                         System.out.println("Do you want to roll: (Y/N)");
                         answer = scan.nextLine();
 
                         if (answer == deconsecrated) {
-                            System.out.println("Human turn total ");
-                            System.out.println("Human score: " + humanScore);
+                            System.out.println("User turn total ");
+                            System.out.println("User score: " + humanScore);
                             System.out.println("Computer score: " + computerScore);
                             break;
                         }
@@ -81,7 +82,7 @@ public class Pig {
                 //Conditional code block that checks to see if the user has won the game
                 if(humanScore >= VictoryNumber) {
                     System.out.println("Your total score is " + humanScore);
-                    System.out.println("The human wins!");
+                    System.out.println("The User wins!");
                     break;
                 }
 
@@ -108,6 +109,7 @@ public class Pig {
                     else if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
                         int snakeEyes = 0;
                         computerScore = snakeEyes;
+                        System.out.println("Computer rolled SNAKE EYES.");
                         break;
                     }
 
@@ -115,6 +117,7 @@ public class Pig {
                     else if((dice1.getFaceValue() != 1 && dice2.getFaceValue() != 1)){
                         computerRoundScore = dice1.getFaceValue() + dice2.getFaceValue();
                         computerScore = computerScore + computerRoundScore;
+                        System.out.println("Computer score is now " + computerScore + ".");
                     }
 
                 }while(computerRoundScore < computerStopGap);
