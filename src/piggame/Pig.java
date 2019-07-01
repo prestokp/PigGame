@@ -27,6 +27,7 @@ public class Pig {
         while (humanScore < VictoryNumber || computerScore < VictoryNumber) {
 
                 do {
+                    //Rolls the dice
                     dice1.roll();
                     dice2.roll();
                     System.out.println();
