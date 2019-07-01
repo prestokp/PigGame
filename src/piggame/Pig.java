@@ -11,12 +11,16 @@ public class Pig {
         int humanScore = 0;
         int computerScore = 0;
         int computerRoundScore = 0;
+        int humanRoundScore = 0;
+        int computerStopGap = 20;
 
         final int VictoryNumber = 100;
         String affirmation = "Y";
         String deconsecrated = "N";
 
-        Scanner scan
+        Scanner scan = new Scanner(System.in);
+        String answer = scan.nextLine();
+
 
 
         while (humanScore < VictoryNumber || computerScore < VictoryNumber) {
@@ -28,18 +32,45 @@ public class Pig {
                                               //conditional statements are activated
             if (ControlFlow = true) {*/
 
-                while (humanScore < 100 /*ControlFlow = true*/) {
+                do {
                     dice1.roll();
                     dice2.roll();
+                    System.out.println();
+                    System.out.println("You rolled a " + dice1.getFaceValue() + " & a "
+                            + dice2.getFaceValue());
 
-                    //The condition in which both values of the die can be added
-                    if (dice1.getFaceValue() != 1 && dice2.getFaceValue() != 1) {
-                        int sum;
-                        sum = dice1.getFaceValue() + dice2.getFaceValue();
-                        humanScore = humanScore + sum;
+                    //The condition in which one value of the die is 1, no points
+                    //added for this round
+                    if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1) {
+                        humanRoundScore = 0;
+                        humanScore = humanScore + humanRoundScore;
+                        break;
+                    }
 
+                    //The condition in which both values of the die are 1
+                    //Eliminates all accumulated points by assigning the points to 0
+                    else if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
+                        int snakeEyes = 0;
+                        humanScore = snakeEyes;
+                        break;
+                    }
+
+                        //The condition in which both values of the die can be added
+                    else (dice1.getFaceValue() != 1 && dice2.getFaceValue() != 1){
+
+                        humanRoundScore = dice1.getFaceValue() + dice2.getFaceValue();
+                        humanScore = humanScore + humanRoundScore;
+                        System.out.println("Human score is now " + humanScore + ".");
                         System.out.println("Do you want to roll: (Y/N)");
-                        Scanner scan = new Scanner(System.in);
+                        answer = scan.nextLine();
+
+                        if (answer == deconsecrated){
+                            System.out.println("Human turn total ");
+                            System.out.println("Human score: " + humanScore);
+                            System.out.println("Computer score: " + computerScore);
+                            break;
+                        }
+                        /*Scanner scan = new Scanner(System.in);
                         String answer = scan.nextLine();
                         answer = answer.toUpperCase();
                         if (answer.equals("Y")){      //The point is that if the user inputs Y, then they keep rolling
@@ -49,27 +80,38 @@ public class Pig {
                         else if(answer.equals("N")){
                             //ControlFlow = false;
                         }
+                    }*/
                     }
 
-                    //The condition in which one value of the die is 1, no points
-                    //added for this round
+                }while (answer.equalsIgnoreCase(affirmation));
+
+                if(humanScore >= VictoryNumber) {
+                    System.out.println("Your total score is " + humanScore);
+                    System.out.println("The human wins!");
+                    break;
+                }
+
+                //Code below this point mostly pertains to the functionality of the computer
+                System.out.println();
+                System.out.println("It's the Computer's turn.");
+
+                do{
+                   dice1.roll();
+                   dice2.roll();
+
                     if (dice1.getFaceValue() == 1 || dice2.getFaceValue() == 1) {
-                        int noPoints = 0;
-                        humanScore = humanScore + noPoints;
-                        //ControlFlow = false;
+                        computerRoundScore = 0;
+                        computerScore = computerScore + computerRoundScore;
+                        break;
                     }
 
-                    //The condition in which both values of the die are 1
-                    //Eliminates all accumulated points by assigning the points to 0
-                    if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1) {
+                    else if (dice1.getFaceValue() == 1 && dice2.getFaceValue() == 1){
                         int snakeEyes = 0;
-                        humanScore = snakeEyes;
-                        //ControlFlow = false; //probably going to replace with a function that can control the methods
+                        computerScore = snakeEyes;
+                        break;
                     }
 
-                    //Code below this point mostly pertains to the functionality of the computer
-                    if (ControlFlow = false) {
-                        computerScore = 0;
+                }while(computerRoundScore < computerStopGap);
 
 
                         while (ControlFlow = false){
@@ -112,9 +154,10 @@ public class Pig {
 
         } //While loop delimiter for the entire game
 
-    } //Delimiter for the main function
+    }//Delimiter for the main function
 
-    public String askRoll(){
+
+    /*public String askRoll(){
         boolean ControlFlow = true;
         System.out.println("Do you want to roll(Y/N): ");  //This code prompts the user if they want to run again
         Scanner scan = new Scanner(System.in);            //This reads in the input Y or N for Yes or No
