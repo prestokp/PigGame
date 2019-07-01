@@ -131,7 +131,7 @@ public class Pig {
                 //Conditional code blocks that check user/computer scores against
                 //each other and the Victory Number in order to determine if the
                 //game was won and who won the game
-                if (humanScore > computerScore){
+                /*if (humanScore > computerScore){
                     System.out.println("The User wins!");
                     break;
                 } else if(humanScore == computerScore){
@@ -140,7 +140,7 @@ public class Pig {
                 } else if (humanScore < computerScore){
                     System.out.println("The Computer wins!");
                     break;
-                }
+                }*/
 
         } //Game While Loop Delimiter
 
