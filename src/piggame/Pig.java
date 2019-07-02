@@ -1,6 +1,7 @@
 package piggame;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Pig {
     public static void main(String[] args) {
@@ -18,23 +19,28 @@ public class Pig {
         String affirmation = "Y";       //Affirmative string response by the user
         String deconsecrated = "N";     //Negative string response by the user
 
+        System.out.println("PIG");
+        System.out.println("Do you want to roll: (Y/N)");
+        System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
+
         Scanner scan = new Scanner(System.in);  //Scanner object to take in user input
         String answer = scan.nextLine();        //Stores user input in reference variable
-
-
+                                                //Java compiler stops printing prompts after scanner object
+        Random rand = new Random();
+        int numberOfTurns = 0;                  //Tracks number of user turns
+        int count = 0;                          //Tracks number of computer turns
 
         //This while loop keeps the whole game running until game winning conditions are met.
         while (humanScore < VictoryNumber || computerScore < VictoryNumber) {
 
-            //System.out.println("PIG");
+
 
 
             if (answer.equalsIgnoreCase(affirmation)) {
 
                 do {
-                    System.out.println("User: " + humanScore + "  ||  " + "Computer: " + computerScore);
-                    System.out.println("Do you want to roll: (Y/N)");
-                    System.out.println("User's turn.");
+
+
                     //Rolls the dice
                     dice1.roll();
                     dice2.roll();
@@ -73,12 +79,15 @@ public class Pig {
                             System.out.println("Computer score: " + computerScore);
                             break;
                         }
+
                     }
+                    numberOfTurns = numberOfTurns + 1;
 
                 } while (answer.equalsIgnoreCase(affirmation));
                 //User turn While Loop delimiter. User turn ends when the input doesn't
                 //match the affirmation string "Y"
-            }
+
+            }//If statement delimiter
 
                 //Conditional code block that checks to see if the user has won the game
                 if(humanScore >= VictoryNumber) {
@@ -91,7 +100,10 @@ public class Pig {
                 System.out.println();
                 System.out.println("It's the Computer's turn.");
 
+                int numberOfComputerRuns = rand.nextInt(numberOfTurns + 1);
+
                 do{
+
                     //Rolls the dice
                    dice1.roll();
                    dice2.roll();
@@ -121,7 +133,9 @@ public class Pig {
                         System.out.println("Computer score is now " + computerScore + ".");
                     }
 
-                }while(computerRoundScore < computerStopGap);
+                    count = count + 1;
+
+                }while(count < numberOfComputerRuns);
                 //Computer turn while loop delimiter. Computer turn ends when it reaches more
                 //than 20 points in one round
 
