@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Pig {
+
     public static void main(String[] args) {
 
         Die dice1 = new Die();
